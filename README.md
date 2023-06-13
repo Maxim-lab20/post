@@ -1,1 +1,1 @@
-# Starting Spring Boot App
+# GET, POST, PUT, PATCH endpoints
