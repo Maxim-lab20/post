@@ -1,1 +1,1 @@
-# GET, POST, PUT, PATCH endpoints
+# Path Variables

@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class AnnouncementController {
 
-    @GetMapping("/") // get resources
-    public String getAnnouncement() {
-        return "hey, this is an announcement";
+    @GetMapping("/announcements/{id}") // get resources
+    public String getAnnouncement(@PathVariable Integer id) {
+        return "hey, this is an announcement with id= " + id;
     }
 
     @PostMapping("/") // create resources
