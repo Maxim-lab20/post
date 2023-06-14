@@ -1,35 +1,31 @@
 package com.max.post.controller;
 
 import com.max.post.model.Announcement;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AnnouncementController {
 
-    @GetMapping("/announcements/{id}") // get resources
-    public String getAnnouncement(@PathVariable Integer id) {
-        return "hey, this is an announcement with id= " + id;
+    @GetMapping("/announcements/{id}")
+    public String getAnnouncement(@PathVariable Integer id,
+                                  HttpServletRequest request) {
+        String uniqueId = request.getHeader("unique-id");
+        return String.format("announcement with id = %s, the request is having unique-id = %s",
+                id, uniqueId);
     }
 
-    @GetMapping("/announcements") // get resources
+    @GetMapping("/announcements")
     public String filterAnnouncements(@RequestParam String name,
                                       @RequestParam(required = false) Integer votes) {
-        return "we got announcements list filtered by name= " + name + " and votes= " + votes;
+        return String.format("we got announcements list filtered by name = %s and votes = %s",
+                name,
+                votes);
     }
 
-    @PostMapping("/announcements") // create resources
+    @PostMapping("/announcements")
     public String createAnnouncement(@RequestBody Announcement announcement) {
-        return "announcement saved! announcement data: " + announcement;
-    }
-
-    @PutMapping("/") // update resources entirely
-    public String updateAnnouncement() {
-        return "hey, I update entirely an announcement";
-    }
-
-    @PatchMapping("/") // update resources partially
-    public String updateAnnouncementPartially() {
-        return "hey, I update partially an announcement";
+        return String.format("announcement saved! announcement data: %s ", announcement);
     }
 
 }
