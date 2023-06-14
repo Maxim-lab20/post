@@ -1,5 +1,6 @@
 package com.max.post.controller;
 
+import com.max.post.model.Announcement;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,9 +17,9 @@ public class AnnouncementController {
         return "we got announcements list filtered by name= " + name + " and votes= " + votes;
     }
 
-    @PostMapping("/") // create resources
-    public String createAnnouncement() {
-        return "hey, I created an announcement";
+    @PostMapping("/announcements") // create resources
+    public String createAnnouncement(@RequestBody Announcement announcement) {
+        return "announcement saved! announcement data: " + announcement;
     }
 
     @PutMapping("/") // update resources entirely
