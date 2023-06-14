@@ -6,9 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/announcements")
 public class AnnouncementController {
 
-    @GetMapping("/announcements/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<String> getAnnouncement(@PathVariable Integer id,
                                                   HttpServletRequest request) {
         String uniqueId = request.getHeader("unique-id");
@@ -20,7 +21,7 @@ public class AnnouncementController {
                 .body(responseBody);
     }
 
-    @GetMapping("/announcements")
+    @GetMapping
     public ResponseEntity<String> filterAnnouncements(@RequestParam String name,
                                                       @RequestParam(required = false) Integer votes) {
         String responseBody = String.format("we got announcements list filtered by name = %s " +
@@ -29,7 +30,7 @@ public class AnnouncementController {
         return ResponseEntity.ok(responseBody);
     }
 
-    @PostMapping("/announcements")
+    @PostMapping
     public ResponseEntity<Announcement> createAnnouncement(@RequestBody Announcement announcement) {
         return ResponseEntity.ok(announcement);
     }
