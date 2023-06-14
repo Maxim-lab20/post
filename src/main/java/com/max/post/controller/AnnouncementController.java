@@ -2,30 +2,36 @@ package com.max.post.controller;
 
 import com.max.post.model.Announcement;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AnnouncementController {
 
     @GetMapping("/announcements/{id}")
-    public String getAnnouncement(@PathVariable Integer id,
-                                  HttpServletRequest request) {
+    public ResponseEntity<String> getAnnouncement(@PathVariable Integer id,
+                                                  HttpServletRequest request) {
         String uniqueId = request.getHeader("unique-id");
-        return String.format("announcement with id = %s, the request is having unique-id = %s",
-                id, uniqueId);
+        String responseBody = String.format("announcement with id = %s, the request is having " +
+                "unique-id = %s", id, uniqueId);
+
+        return ResponseEntity.ok()
+                .header("unique-id", uniqueId)
+                .body(responseBody);
     }
 
     @GetMapping("/announcements")
-    public String filterAnnouncements(@RequestParam String name,
-                                      @RequestParam(required = false) Integer votes) {
-        return String.format("we got announcements list filtered by name = %s and votes = %s",
-                name,
-                votes);
+    public ResponseEntity<String> filterAnnouncements(@RequestParam String name,
+                                                      @RequestParam(required = false) Integer votes) {
+        String responseBody = String.format("we got announcements list filtered by name = %s " +
+                "and votes = %s", name, votes);
+
+        return ResponseEntity.ok(responseBody);
     }
 
     @PostMapping("/announcements")
-    public String createAnnouncement(@RequestBody Announcement announcement) {
-        return String.format("announcement saved! announcement data: %s ", announcement);
+    public ResponseEntity<Announcement> createAnnouncement(@RequestBody Announcement announcement) {
+        return ResponseEntity.ok(announcement);
     }
 
 }
