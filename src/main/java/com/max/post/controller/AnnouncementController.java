@@ -10,6 +10,12 @@ public class AnnouncementController {
         return "hey, this is an announcement with id= " + id;
     }
 
+    @GetMapping("/announcements") // get resources
+    public String filterAnnouncements(@RequestParam String name,
+                                      @RequestParam(required = false) Integer votes) {
+        return "we got announcements list filtered by name= " + name + " and votes= " + votes;
+    }
+
     @PostMapping("/") // create resources
     public String createAnnouncement() {
         return "hey, I created an announcement";

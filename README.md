@@ -1,1 +1,1 @@
-# Path Variables
+# Query Params
