@@ -1,7 +1,8 @@
 package com.max.post.controller;
 
-import com.max.post.model.Announcement;
+import com.max.post.dto.AnnouncementDTO;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +32,8 @@ public class AnnouncementController {
     }
 
     @PostMapping
-    public ResponseEntity<Announcement> createAnnouncement(@RequestBody Announcement announcement) {
-        return ResponseEntity.ok(announcement);
+    public ResponseEntity<AnnouncementDTO> createAnnouncement(@Valid @RequestBody AnnouncementDTO announcementDTO) {
+        return ResponseEntity.ok(announcementDTO);
     }
 
 }
