@@ -3,6 +3,7 @@ package com.max.post.controller;
 import com.max.post.dto.AnnouncementDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,29 +12,33 @@ import org.springframework.web.bind.annotation.*;
 public class AnnouncementController {
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> getAnnouncement(@PathVariable Integer id,
-                                                  HttpServletRequest request) {
+    public ResponseEntity<AnnouncementDTO> getAnnouncementById(@PathVariable Integer id,
+                                                               HttpServletRequest request) {
         String uniqueId = request.getHeader("unique-id");
-        String responseBody = String.format("announcement with id = %s, the request is having " +
-                "unique-id = %s", id, uniqueId);
+        AnnouncementDTO announcementDTO = AnnouncementDTO.builder()
+                .id(id)
+                .build();
 
         return ResponseEntity.ok()
                 .header("unique-id", uniqueId)
-                .body(responseBody);
+                .body(announcementDTO);
     }
 
     @GetMapping
-    public ResponseEntity<String> filterAnnouncements(@RequestParam String name,
-                                                      @RequestParam(required = false) Integer votes) {
-        String responseBody = String.format("we got announcements list filtered by name = %s " +
-                "and votes = %s", name, votes);
+    public ResponseEntity<AnnouncementDTO> getFilteredListOfAnnouncements(@RequestParam String author,
+                                                                          @RequestParam(required = false)
+                                                                          Integer votes) {
+        AnnouncementDTO announcementDTO = AnnouncementDTO.builder()
+                .author(author)
+                .votes(votes)
+                .build();
 
-        return ResponseEntity.ok(responseBody);
+        return ResponseEntity.ok(announcementDTO);
     }
 
     @PostMapping
     public ResponseEntity<AnnouncementDTO> createAnnouncement(@Valid @RequestBody AnnouncementDTO announcementDTO) {
-        return ResponseEntity.ok(announcementDTO);
+        return new ResponseEntity<>(announcementDTO, HttpStatus.CREATED);
     }
 
 }
