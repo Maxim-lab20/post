@@ -1,1 +1,1 @@
-# Flyway - Tool to manage database changes
+# Entity Class
