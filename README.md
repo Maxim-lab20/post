@@ -1,1 +1,1 @@
-# Connect to DBMS
+# Flyway - Tool to manage database changes
