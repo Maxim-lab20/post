@@ -1,1 +1,1 @@
-# MapStruct - Entity to DTO & DTO to Entity
+# Managing transactions - Rollback mechanism
