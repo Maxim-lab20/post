@@ -1,9 +1,17 @@
 package com.max.post.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(schema = "public", name = "announcement")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class AnnouncementEntity {
 
     @Id

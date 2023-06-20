@@ -1,44 +1,48 @@
 package com.max.post.controller;
 
-import com.max.post.dto.AnnouncementDTO;
+import com.max.post.entity.AnnouncementEntity;
+import com.max.post.repository.AnnouncementRepository;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/announcements")
+@RequiredArgsConstructor
 public class AnnouncementController {
 
-    @GetMapping("/{id}")
-    public ResponseEntity<AnnouncementDTO> getAnnouncementById(@PathVariable Integer id,
-                                                               HttpServletRequest request) {
-        String uniqueId = request.getHeader("unique-id");
-        AnnouncementDTO announcementDTO = AnnouncementDTO.builder()
-                .id(id)
-                .build();
+    private final AnnouncementRepository announcementRepository;
 
-        return ResponseEntity.ok()
-                .header("unique-id", uniqueId)
-                .body(announcementDTO);
+    @GetMapping("/{id}")
+    public ResponseEntity<AnnouncementEntity> getAnnouncementById(@PathVariable Integer id,
+                                                                  HttpServletRequest request) {
+        String uniqueId = request.getHeader("unique-id");
+        Optional<AnnouncementEntity> announcementEntityOptional = announcementRepository.findById(id);
+
+        return announcementEntityOptional
+                .map(entity -> ResponseEntity.ok()
+                        .header("unique-id", uniqueId)
+                        .body(entity))
+                .orElse(null);
     }
 
     @GetMapping
-    public ResponseEntity<AnnouncementDTO> getFilteredListOfAnnouncements(@RequestParam String author,
-                                                                          @RequestParam(required = false)
-                                                                          Integer votes) {
-        AnnouncementDTO announcementDTO = AnnouncementDTO.builder()
-                .author(author)
-                .votes(votes)
-                .build();
+    public ResponseEntity<List<AnnouncementEntity>> getFilteredListOfAnnouncements(@RequestParam String author) {
 
-        return ResponseEntity.ok(announcementDTO);
+        List<AnnouncementEntity> entityList = announcementRepository.findAllByAuthor(author);
+
+        return ResponseEntity.ok(entityList);
     }
 
     @PostMapping
-    public ResponseEntity<AnnouncementDTO> createAnnouncement(@Valid @RequestBody AnnouncementDTO announcementDTO) {
-        return new ResponseEntity<>(announcementDTO, HttpStatus.CREATED);
+    public ResponseEntity<AnnouncementEntity> createAnnouncement(@RequestBody AnnouncementEntity announcement) {
+        AnnouncementEntity savedEntity = announcementRepository.save(announcement);
+        return new ResponseEntity<>(savedEntity, HttpStatus.CREATED);
     }
 
 }
