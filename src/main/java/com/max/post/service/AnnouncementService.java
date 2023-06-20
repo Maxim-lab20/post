@@ -1,15 +1,15 @@
 package com.max.post.service;
 
-import com.max.post.entity.AnnouncementEntity;
+import com.max.post.dto.AnnouncementDTO;
 
 import java.util.List;
 
 public interface AnnouncementService {
 
-    AnnouncementEntity getAnnouncementById(Integer id);
+    AnnouncementDTO getAnnouncementById(Integer id);
 
-    List<AnnouncementEntity> getFilteredListOfAnnouncements(String author);
+    List<AnnouncementDTO> getFilteredListOfAnnouncements(String author);
 
-    AnnouncementEntity createAnnouncement(AnnouncementEntity announcement);
+    AnnouncementDTO createAnnouncement(AnnouncementDTO announcementDTO);
 
 }

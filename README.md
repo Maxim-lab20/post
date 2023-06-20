@@ -1,1 +1,1 @@
-# "Controller-Service-Repository" design pattern
+# MapStruct - Entity to DTO & DTO to Entity
