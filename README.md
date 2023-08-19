@@ -1,1 +1,1 @@
-# @ControllerAdvice
+# Logging with @Log4J2

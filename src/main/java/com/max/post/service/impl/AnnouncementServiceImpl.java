@@ -8,6 +8,7 @@ import com.max.post.repository.AnnouncementRepository;
 import com.max.post.service.AnnouncementService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,15 +16,18 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class AnnouncementServiceImpl implements AnnouncementService {
 
     private final AnnouncementRepository announcementRepository;
 
     @Override
     public AnnouncementDTO getAnnouncementById(Integer id) {
+        log.info("inside getAnnouncementById() method");
         Optional<AnnouncementEntity> announcementEntityOptional = announcementRepository.findById(id);
 
         if (announcementEntityOptional.isEmpty()) {
+            log.error("announcement with id = {} not found", id);
             throw new AnnouncementNotFoundException(
                     String.format("Announcement with id = %s not found.", id));
         }
