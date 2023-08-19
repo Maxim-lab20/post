@@ -2,6 +2,7 @@ package com.max.post.service.impl;
 
 import com.max.post.dto.AnnouncementDTO;
 import com.max.post.entity.AnnouncementEntity;
+import com.max.post.exception.AnnouncementNotFoundException;
 import com.max.post.mapper.AnnouncementMapper;
 import com.max.post.repository.AnnouncementRepository;
 import com.max.post.service.AnnouncementService;
@@ -21,6 +22,11 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     @Override
     public AnnouncementDTO getAnnouncementById(Integer id) {
         Optional<AnnouncementEntity> announcementEntityOptional = announcementRepository.findById(id);
+
+        if (announcementEntityOptional.isEmpty()) {
+            throw new AnnouncementNotFoundException(
+                    String.format("Announcement with id = %s not found.", id));
+        }
 
         return announcementEntityOptional.map(AnnouncementMapper.INSTANCE::toDTO)
                 .orElse(null);
