@@ -1,8 +1,10 @@
 package com.max.announcements.service.impl;
 
 import com.max.announcements.dto.AnnouncementDTO;
+import com.max.announcements.dto.AnnouncementWithCommentsDTO;
 import com.max.announcements.entity.AnnouncementEntity;
 import com.max.announcements.exception.AnnouncementNotFoundException;
+import com.max.announcements.feign.CommentsServiceClient;
 import com.max.announcements.mapper.AnnouncementMapper;
 import com.max.announcements.repository.AnnouncementRepository;
 import com.max.announcements.service.AnnouncementService;
@@ -18,6 +20,7 @@ import java.util.Optional;
 public class AnnouncementServiceImpl implements AnnouncementService {
 
     private final AnnouncementRepository announcementRepository;
+    private final CommentsServiceClient commentsServiceClient;
 
     @Override
     public AnnouncementDTO getAnnouncementById(Integer id) {
@@ -48,4 +51,16 @@ public class AnnouncementServiceImpl implements AnnouncementService {
         return AnnouncementMapper.INSTANCE.toDTO(savedEntity);
     }
 
+    @Override
+    public AnnouncementWithCommentsDTO getAnnouncementWithCommentsById(Integer id) {
+
+        AnnouncementDTO announcementDTO = getAnnouncementById(id);
+        List<String> comments = commentsServiceClient.getCommentsByAnnouncementId(id);
+
+        return AnnouncementWithCommentsDTO.builder()
+                .announcementDTO(announcementDTO)
+                .comments(comments)
+                .build();
+
+    }
 }

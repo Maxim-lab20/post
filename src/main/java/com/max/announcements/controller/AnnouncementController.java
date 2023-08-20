@@ -1,6 +1,7 @@
 package com.max.announcements.controller;
 
 import com.max.announcements.dto.AnnouncementDTO;
+import com.max.announcements.dto.AnnouncementWithCommentsDTO;
 import com.max.announcements.service.AnnouncementService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,11 @@ public class AnnouncementController {
     @PostMapping
     public ResponseEntity<AnnouncementDTO> createAnnouncement(@RequestBody AnnouncementDTO announcementDTO) {
         return new ResponseEntity<>(announcementService.createAnnouncement(announcementDTO), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}/comments")
+    public ResponseEntity<AnnouncementWithCommentsDTO> getAnnouncementWithCommentsById(@PathVariable Integer id) {
+        return new ResponseEntity<>(announcementService.getAnnouncementWithCommentsById(id), HttpStatus.OK);
     }
 
 }
