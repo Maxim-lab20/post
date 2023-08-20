@@ -1,4 +1,4 @@
-package com.max.post.exception;
+package com.max.announcements.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

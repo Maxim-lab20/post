@@ -1,4 +1,4 @@
-package com.max.post.dto;
+package com.max.announcements.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;

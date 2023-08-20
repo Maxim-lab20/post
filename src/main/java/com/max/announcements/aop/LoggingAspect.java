@@ -1,4 +1,4 @@
-package com.max.post.aop;
+package com.max.announcements.aop;
 
 import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.JoinPoint;

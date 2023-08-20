@@ -1,11 +1,11 @@
-package com.max.post.service.impl;
+package com.max.announcements.service.impl;
 
-import com.max.post.dto.AnnouncementDTO;
-import com.max.post.entity.AnnouncementEntity;
-import com.max.post.exception.AnnouncementNotFoundException;
-import com.max.post.mapper.AnnouncementMapper;
-import com.max.post.repository.AnnouncementRepository;
-import com.max.post.service.AnnouncementService;
+import com.max.announcements.dto.AnnouncementDTO;
+import com.max.announcements.entity.AnnouncementEntity;
+import com.max.announcements.exception.AnnouncementNotFoundException;
+import com.max.announcements.mapper.AnnouncementMapper;
+import com.max.announcements.repository.AnnouncementRepository;
+import com.max.announcements.service.AnnouncementService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

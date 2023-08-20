@@ -1,6 +1,6 @@
-package com.max.post.service;
+package com.max.announcements.service;
 
-import com.max.post.dto.AnnouncementDTO;
+import com.max.announcements.dto.AnnouncementDTO;
 
 import java.util.List;
 

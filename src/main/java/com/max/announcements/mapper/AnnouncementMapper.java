@@ -1,7 +1,7 @@
-package com.max.post.mapper;
+package com.max.announcements.mapper;
 
-import com.max.post.dto.AnnouncementDTO;
-import com.max.post.entity.AnnouncementEntity;
+import com.max.announcements.dto.AnnouncementDTO;
+import com.max.announcements.entity.AnnouncementEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

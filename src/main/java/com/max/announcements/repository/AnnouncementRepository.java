@@ -1,6 +1,6 @@
-package com.max.post.repository;
+package com.max.announcements.repository;
 
-import com.max.post.entity.AnnouncementEntity;
+import com.max.announcements.entity.AnnouncementEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

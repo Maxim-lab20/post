@@ -1,7 +1,7 @@
-package com.max.post.controller;
+package com.max.announcements.controller;
 
-import com.max.post.dto.AnnouncementDTO;
-import com.max.post.service.AnnouncementService;
+import com.max.announcements.dto.AnnouncementDTO;
+import com.max.announcements.service.AnnouncementService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

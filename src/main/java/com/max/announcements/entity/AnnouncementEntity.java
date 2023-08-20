@@ -1,4 +1,4 @@
-package com.max.post.entity;
+package com.max.announcements.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

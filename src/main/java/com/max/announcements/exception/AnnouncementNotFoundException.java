@@ -1,4 +1,4 @@
-package com.max.post.exception;
+package com.max.announcements.exception;
 
 public class AnnouncementNotFoundException extends RuntimeException {
 
