@@ -4,7 +4,7 @@ import com.max.announcements.dto.AnnouncementDTO;
 import com.max.announcements.dto.AnnouncementWithCommentsDTO;
 import com.max.announcements.entity.AnnouncementEntity;
 import com.max.announcements.exception.AnnouncementNotFoundException;
-import com.max.announcements.feign.CommentsServiceClient;
+import com.max.announcements.feign.clients.CommentsServiceClient;
 import com.max.announcements.mapper.AnnouncementMapper;
 import com.max.announcements.repository.AnnouncementRepository;
 import com.max.announcements.service.AnnouncementService;

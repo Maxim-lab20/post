@@ -1,1 +1,1 @@
-# Making HTTP Requests with Feign Client
+# Error Handling in Feign - CustomFeignErrorDecoder

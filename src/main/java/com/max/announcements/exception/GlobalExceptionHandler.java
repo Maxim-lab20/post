@@ -1,5 +1,6 @@
 package com.max.announcements.exception;
 
+import feign.RetryableException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -24,6 +25,16 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(errorMessage);
+    }
+
+    @ExceptionHandler(FeignException.class)
+    public ResponseEntity<String> handleFeignException(FeignException ex) {
+        return new ResponseEntity<>(ex.getMessage(), ex.getStatus());
+    }
+
+    @ExceptionHandler(RetryableException.class)
+    public ResponseEntity<String> retryableException(RetryableException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
