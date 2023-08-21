@@ -15,7 +15,7 @@ import java.util.List;
 public interface CommentsServiceClient {
 
     // this method calls -> http://localhost:9090/comments/{id}
-    @GetMapping("/commentss/{id}")
+    @GetMapping("/comments/{id}")
     List<String> getCommentsByAnnouncementId(@PathVariable Integer id);
 
 }

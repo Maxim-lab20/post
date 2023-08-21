@@ -1,1 +1,1 @@
-# Error Handling in Feign - CustomFeignErrorDecoder
+# Error Handling - CustomFeignErrorDecoder
