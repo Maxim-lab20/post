@@ -61,6 +61,5 @@ public class AnnouncementServiceImpl implements AnnouncementService {
                 .announcementDTO(announcementDTO)
                 .comments(comments)
                 .build();
-
     }
 }
